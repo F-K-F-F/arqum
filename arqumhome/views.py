@@ -10,8 +10,8 @@ def index(request):
     return render(request, 'arqumhome/index.html', contenido)
 
 
-# def altacliente(request):
-    # return render(request, 'arqumhome/altacliente.html')
+def altacliente(request):
+    return render(request, 'arqumhome/altacliente.html')
 
 
 def bajacliente(request):
@@ -22,7 +22,7 @@ def consultacliente(request):
     return render(request, 'arqumhome/consultacliente.html')
 
 
-def altacliente(request):
+def cargar_cliente(request):
     if request.method == 'POST':
         form = CargarForm(request.POST)
 
@@ -42,4 +42,4 @@ def altacliente(request):
             return redirect("index")
         else:
             form = CargarForm()
-        return render(request, 'arqumhome/formularioalta.html', {'form': form})
+            return render(request, 'arqumhome/formulario.html', {'form': form})
