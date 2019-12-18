@@ -1,0 +1,34 @@
+<!--CONTENEDOR DE FORMULARIO PARA ALTA DE CLIENTE-->
+
+{% extends "arqumhome/plantilla.html" %}
+{% block main %}
+<main role="main" class="container-fluid">
+    <h2 id="titAltaCliente" class="page-title">Alta de Cliente</h2>
+    <br>
+    <div id="contentClienteAlta">
+        <div id="contentAlta">
+            <div class="row">
+                <div class="expContent col-sm-10">
+                    <div class="control-container form-vertical">
+                        <h4 class="page-title">Complete los campos</h4>
+                        <hr class="page-title-divider">
+                        <form action="{% url 'altacliente' %}" method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {% for field in form %}
+                            <div class="form-group">
+                                <label for="{{ field.name }}">{{ field.label }}</label>
+                                {{ field }}
+                            </div>
+                            {% endfor %}
+                        </form>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <input type="submit" id="btnAltaCliente" class="btn-lg btn-block btn-primary" value="Dar de alta">
+                    <button type="button" id="btnVolverInicio" class="btn-lg btn-block btn-primary" onclick="location.href="{% url 'index' %}"">Volver</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

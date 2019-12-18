@@ -1,0 +1,64 @@
+<!--TODOS LOS STATIC Y LA ESTRUCTURA PRINCIPAL-->
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width", initial-scale=1, shrink-to-fit=no>
+        <title>ARQuM</title>
+        <link rel="stylesheet" href="{% static '/arqumhome/css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static '/arqumhome/css/bootstrap-theme.min.css' %}">
+        <link rel="stylesheet" href="{% static '/arqumhome/css/jquery.orgchart.css' %}">
+        <link rel="stylesheet" href="{% static '/arqumhome/css/alertify.min.css' %}">
+        <link rel="stylesheet" href="{% static '/arqumhome/css/font-awesome.min.css' %}">
+        <link rel="stylesheet" href="{% static '/arqumhome/css/style.css' %}">
+        <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.css">
+        <style>
+            #loading {
+                background-color: #ebf7ec;
+                height: 60px;
+                width: 200px;
+                position: fixed;
+                z-index: 1000;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                padding-top: 10px;
+                border: 1px solid #005296;
+                border-radius: 10px;
+                box-shadow: 1px 2px 50px 25px #4c515f;
+            }
+            .tooltip {
+                z-index: 1 !important;
+            }
+                .tooltip > .tooltip-inner {
+                    background-color: #265a88;
+                    color: #fff;
+                }
+                .tooltip.bs-tether-element-attached-bottom .tooltip-inner::before {
+                    border-top-color: #265a88 !important;
+                }
+                .tooltip.bs-tether-element-attached-top .tooltip-inner::before {
+                    border-bottom-color: #265a88 !important;
+                }
+                .tooltip.bs-tether-element-attached-left .tooltip-inner::before {
+                    border-right-color: #265a88 !important;
+                }
+                .tooltip.bs-tether-element-attached-right .tooltip-inner::before {
+                    border-left-color: #265a88 !important;
+                }
+        </style>
+    </head>
+    <body>
+        {% block plantilla %}{% endblock %}
+        <script src="{% static '/arqumhome/js/jquery-3.4.1.min.js' %}"></script>
+        <script src="{% static '/arqumhome/js/jquery.inputmask.bundle.min.js' %}"></script>
+        <script src="{% static '/arqumhome/js/jquery.orgchart.js' %}"></script>
+        <script src="{% static '/arqumhome/js/modals.js' %}"></script>
+        <script src="{% static '/arqumhome/js/bootstrap.bundle.min.js' %}"></script>
+        <script src="{% static '/arqumhome/js/alertify.min.js' %}"></script>
+        <script src="{% static '/arqumhome/js/alertifyCustom.js' %}"></script>
+        <script src="{% static '/arqumhome/js/validate.js' %}"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.js"></script>
+    </body>
+</html>
