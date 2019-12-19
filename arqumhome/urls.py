@@ -1,6 +1,7 @@
 from django.urls import path
 from arqumhome import views
 
+
 urlpatterns = [
     path('', views.index, name='index'),
     path('altacliente', views.altacliente, name='altacliente'),

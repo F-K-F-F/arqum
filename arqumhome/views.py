@@ -36,10 +36,20 @@ def cargar_cliente(request):
             fecha_inicio_obra = form.cleaned_data['fecha_inicio_obra']
             fecha_fin_obra = form.cleaned_data['fecha_fin_obra']
 
-            newcliente = Cliente(nombre_cliente=nombre_cliente, domicilio_real=domicilio_real, domicilio_obra=domicilio_obra, correo=correo,
-                                 telefono=telefono, fecha_alta_cliente=fecha_alta_cliente, fecha_inicio_obra=fecha_inicio_obra, fecha_fin_obra=fecha_fin_obra)
+            newcliente = Cliente(nombre_cliente=nombre_cliente,
+                                 domicilio_real=domicilio_real,
+                                 domicilio_obra=domicilio_obra,
+                                 correo=correo,
+                                 telefono=telefono,
+                                 fecha_alta_cliente=fecha_alta_cliente,
+                                 fecha_inicio_obra=fecha_inicio_obra,
+                                 fecha_fin_obra=fecha_fin_obra)
             newcliente.save()
-            return redirect("index")
-        else:
-            form = CargarForm()
-            return render(request, 'arqumhome/formulario.html', {'form': form})
+
+        return redirect("altacliente")
+
+    else:
+
+        form = CargarForm()
+
+    return render(request, 'arqumhome/formulario.html', {'form': form})
