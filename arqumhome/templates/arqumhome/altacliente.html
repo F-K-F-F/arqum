@@ -1,6 +1,9 @@
 <!--CONTENEDOR DE FORMULARIO PARA ALTA DE CLIENTE-->
 
 {% extends "arqumhome/plantilla.html" %}
+{% load widget_tweaks %}
+{% load static %}
+{% load i18n %}
 {% block main %}
 <main role="main" class="container-fluid">
     <h2 id="titAltaCliente" class="page-title">Alta de Cliente</h2>
@@ -12,15 +15,34 @@
                     <div class="control-container form-vertical">
                         <h4 class="page-title">Complete los campos</h4>
                         <hr class="page-title-divider">
-                        {% block formulario %}{% endblock %} <!---->
+                        <form action="{% url 'cargar' %}" method="POST">
+                            {% csrf_token %}
+                            {% for field in form %}
+                                <div class="form-group">
+                                    <strong><label for="{{field.name}}">{{field.label}}</label></strong>
+                                    {% render_field field class='form-control' %}
+                                </div>
+                            {% endfor %}
+                            <br>
+                            <div class="col-sm-2">
+                                <input type="submit" class="btn-lg btn-block btn-primary" value="Dar de alta"></input>
+                            </div>
+                        </form>
                     </div>
                 </div>
-                <div class="col-sm-2">
+                <!--<div class="col-sm-2">
                     <input type="submit" id="btnAltaCliente" class="btn-lg btn-block btn-primary" value="Dar de alta">
-                    <button type="button" id="btnVolverInicio" class="btn-lg btn-block btn-primary" onclick="location.href="{% url 'index' %}"">Volver</button>
-                </div>
+                    <button type="button" id="btnVolverInicio" class="btn-lg btn-block btn-primary" onclick="location.href='{% url 'index' %}';">Volver</button>
+                </div>-->
             </div>
         </div>
     </div>
 </main>
+<script src="{% static 'arqumhome/js/jquery-ui.js' %}"></script>
+<script>
+    $("#id_fecha_fin_obra").datepicker({
+        inline:true,
+        dateFormat: "dd-mm-yyyy"
+    });
+</script>
 {% endblock %}

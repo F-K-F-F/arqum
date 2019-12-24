@@ -7,5 +7,5 @@ urlpatterns = [
     path('altacliente', views.altacliente, name='altacliente'),
     path('bajacliente', views.bajacliente, name='bajacliente'),
     path('consultacliente', views.consultacliente, name='consultacliente'),
-    path('cargar_cliente', views.cargar_cliente, name='cargar_cliente'),
+    path('cargar_cliente', views.FormularioDeAlta.as_view(), name='cargar'),
 ]
