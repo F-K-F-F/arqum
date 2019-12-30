@@ -2,7 +2,7 @@
 
 {% extends "arqumhome/plantilla.html" %}
 {% load widget_tweaks %}
-{% load static %}
+{% load staticfiles %}
 {% load i18n %}
 {% block main %}
 <main role="main" class="container-fluid">
@@ -15,7 +15,7 @@
                     <div class="control-container form-vertical">
                         <h4 class="page-title">Complete los campos</h4>
                         <hr class="page-title-divider">
-                        <form action="{% url 'cargar' %}" method="POST">
+                        <form action="{% url 'cargar' %}" method="POST" enctype="multipart/form-data">
                             {% csrf_token %}
                             {% for field in form %}
                                 <div class="form-group">
@@ -37,12 +37,14 @@
             </div>
         </div>
     </div>
+    <script src="{% static 'arqumhome/js/jquery-ui.js' %}"></script>
+    <script type="text/javascript">
+        $("#id_fecha_fin_obra").datepicker();
+    </script>
 </main>
-<script src="{% static 'arqumhome/js/jquery-ui.js' %}"></script>
-<script>
-    $("#id_fecha_fin_obra").datepicker({
-        inline:true,
-        dateFormat: "dd-mm-yyyy"
-    });
-</script>
 {% endblock %}
+<!--<script src="{% static 'arqumhome/js/jquery-ui.js' %}"></script>
+<script type="text/javascript">
+    $("#id_fecha_fin_obra").datepicker({inline:true, dateFormat: "dd-mm-yyyy"});
+</script>
+
