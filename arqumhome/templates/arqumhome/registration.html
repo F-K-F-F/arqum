@@ -1,0 +1,63 @@
+{% extends 'arqumhome/base.html' %}
+{% load staticfiles %}
+{% load widget_tweaks %}
+
+{% block plantilla %}
+<header class="fluid-container fixed-top">
+    <nav class="navbar navbar-expands-md navbar-arqum" style="padding: 0 !important;">
+        <div class="header">
+            <img class="header-logo" src="{% static 'arqumhome/img/icon.svg' %}">
+            <div class="header-actions">
+                <h3 class="header-title">ARQuM</h3>
+                <h5 class="header-title user2" style="cursor: pointer" data-toggle="popover" data-placement="bottom" data-original-title title>
+                    <i class="fa fa-user">
+                    </i>
+                </h5>
+            </div>
+        </div>
+    </nav>
+</header>
+<div class="container-fluid">
+    <h2 id="titRegistroUsuario" class="page-title">Registro de usuarios</h2>
+    <br>
+    <div id="contentUsuarioAlta">
+        <div id="contentAlta">
+            <div class="row">
+                <div class="expContent col-sm-10">
+                    <div class="control-container form-vertical">
+                        {% if registered %}
+                            <h1>Thank you for registering!</h1>
+                        {% else %}
+                            <!--<h1>Register here</h1>
+                            <h3>Just fill out the form.</h3>-->
+                            <form enctype="multipart/form-data" method="POST">
+                                {% csrf_token %}
+                                {{ user_form.as_p }}
+                                {{ profile_form.as_p }}
+                                <input type="submit" name="" value="Register">
+                            </form>
+                        {% endif %}
+                    </div>                
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+<!--<br>
+<div class="container-fluid">
+    <div class="control-container form-vertical">
+        {% if registered %}
+            <h1>Thank you for registering!</h1>
+        {% else %}
+            <h1>Register here</h1>
+            <h3>Just fill out the form.</h3>
+            <form enctype="multipart/form-data" method="POST">
+                {% csrf_token %}
+                {{ user_form.as_p }}
+                {{ profile_form.as_p }}
+                <input type="submit" name="" value="Register">
+            </form>
+        {% endif %}
+    </div>
+</div>

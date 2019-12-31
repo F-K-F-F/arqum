@@ -11,7 +11,10 @@
                     <h5 class="header-title user2" style="cursor: pointer" data-toggle="popover" data-placement="bottom" data-original-title title>
                         <i class="fa fa-user">
                         </i>
+                        {{ user.username }}
                     </h5>
+                    <i class="fas fa-sign-out-alt" onclick="{% url 'logout' %}">
+                    </i>
                 </div>
             </div>
         </nav>

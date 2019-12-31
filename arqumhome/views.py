@@ -22,7 +22,7 @@ def special(request):
 @login_required
 def user_logout(request):
     logout(request)
-    return HttpResponseRedirect(reverse('index'))
+    return HttpResponseRedirect(reverse(''))
 
 
 def register(request):
@@ -61,15 +61,15 @@ def user_login(request):
             if user.is_active:
                 login(request, user)
                 return HttpResponseRedirect(reverse('index'))
-            else:
-                return HttpResponse("Your account was inactive.")
+            # else:
+                # return HttpResponse("Your account was inactive.")
         else:
             print("Someone tried to login and failed")
             print("They used username: {} and password: {}".format(
                 username, password))
             return HttpResponse("Invalid login details given")
     else:
-        return render(request, 'arqumhome/login.html', {})
+        return render(request, 'arqumhome/login.html')
 
 
 def altacliente(request):

@@ -1,0 +1,50 @@
+{% extends 'arqumhome/base.html' %}
+{% load staticfiles %}
+{% load widget_tweaks %}
+
+{% block plantilla %}
+<header class="fluid-container fixed-top">
+    <nav class="navbar navbar-expands-md navbar-arqum" style="padding: 0 !important;">
+        <div class="header">
+            <img class="header-logo" src="{% static 'arqumhome/img/icon.svg' %}">
+            <div class="header-actions">
+                <h3 class="header-title">ARQuM</h3>
+                <h5 class="header-title user2" style="cursor: pointer" data-toggle="popover" data-placement="bottom" data-original-title title>
+                    <i class="fa fa-user">
+                    </i>
+                </h5>
+            </div>
+        </div>
+    </nav>
+</header>
+<div class="container-fluid">
+    <h2 id="titLoginUsuario" class="page-title">Ingreso al sistema</h2>
+    <br>
+    <div id="contentLoginUsuario">
+        <div id="contentLogin">
+            <div class="row">
+                <div class="expContent col-sm-6">
+                    <div class="control-container form-vertical">
+                        <form method="POST" action="{% url 'user_login' %}">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="username">Username:</label>
+                                <input class="form-control" type="text" name="username" placeholder="usuario">
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                <label for="password">Password:</label>
+                                <input class="form-control" type="password" name="password" placeholder="contraseña">
+                            </div>
+                            <br>
+                            <div class="col-sm-4">
+                                <input type="submit" class="btn-lg btn-block btn-primary" name="" value="Login">
+                            </div>
+                        </form>
+                    </div>
+                </div>           
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
