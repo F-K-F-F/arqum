@@ -23,7 +23,7 @@
     <div id="contentUsuarioAlta">
         <div id="contentAlta">
             <div class="row">
-                <div class="expContent col-sm-10">
+                <div class="expContent col-sm-6">
                     <div class="control-container form-vertical">
                         {% if registered %}
                             <h1>Thank you for registering!</h1>
@@ -32,9 +32,26 @@
                             <h3>Just fill out the form.</h3>-->
                             <form enctype="multipart/form-data" method="POST">
                                 {% csrf_token %}
-                                {{ user_form.as_p }}
-                                {{ profile_form.as_p }}
-                                <input type="submit" name="" value="Register">
+                                {% for field in user_form %}
+                                    <div class="form-group">
+                                        {{ field.label_tag }}
+                                        {% render_field field class="form-control" %}       
+                                    </div>
+                                {% endfor %}
+                                {% for field in profile_form %}
+                                    <div class="form-group">
+                                        {{ field.label_tag }}
+                                        {% render_field field class="form-control" %}
+                                    </div>
+                                {% endfor %}
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <input type="submit" class="btn-lg btn-block btn-primary" name="" value="Crear usuario">    
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <input type="button" class="btn-lg btn-block btn-primary" name='' onclick="location.href='{% url 'user_login' %}'" value="Volver">
+                                    </div>
+                                </div>    
                             </form>
                         {% endif %}
                     </div>                

@@ -5,16 +5,19 @@
     <header class="fluid-container fixed-top">
         <nav class="navbar navbar-expands-md navbar-arqum" style="padding: 0 !important;">
             <div class="header">
-                <img class="header-logo" src="{% static 'arqumhome/img/icon.svg' %}">
+                <a href="{% url 'index' %}">
+                    <img class="header-logo" src="{% static 'arqumhome/img/icon.svg' %}">    
+                </a>
                 <div class="header-actions">
                     <h3 class="header-title">ARQuM</h3>
                     <h5 class="header-title user2" style="cursor: pointer" data-toggle="popover" data-placement="bottom" data-original-title title>
                         <i class="fa fa-user">
+                            {{ user.username }}
                         </i>
-                        {{ user.username }}
                     </h5>
-                    <i class="fas fa-sign-out-alt" onclick="{% url 'logout' %}">
-                    </i>
+                    <span style="color: white;">
+                        <i class="fa fa-sign-out fa-lg"  role="button" onclick="location.href='{% url 'logout' %}';"></i>
+                    </span>
                 </div>
             </div>
         </nav>

@@ -22,7 +22,7 @@ def special(request):
 @login_required
 def user_logout(request):
     logout(request)
-    return HttpResponseRedirect(reverse(''))
+    return redirect('user_login')
 
 
 def register(request):

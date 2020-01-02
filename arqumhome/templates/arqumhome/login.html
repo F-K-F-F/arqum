@@ -37,8 +37,13 @@
                                 <input class="form-control" type="password" name="password" placeholder="contraseña">
                             </div>
                             <br>
-                            <div class="col-sm-4">
-                                <input type="submit" class="btn-lg btn-block btn-primary" name="" value="Login">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <input type="submit" class="btn-lg btn-block btn-primary" name="" value="Login">
+                                </div>
+                                <div class="col-sm-4">
+                                    <input type="button" class="btn-lg btn-block btn-primary" name="" value="Nuevo usuario" onclick="location.href='{% url 'register' %}';">
+                                </div>    
                             </div>
                         </form>
                     </div>
