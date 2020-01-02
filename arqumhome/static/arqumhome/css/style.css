@@ -957,3 +957,7 @@ select {
 /*#txtNroLegajo{
     border-radius: 6px;
 }*/
+
+.mw-arqum-logo{
+    url({% static /arqumhome/img/icon.svg %});
+}

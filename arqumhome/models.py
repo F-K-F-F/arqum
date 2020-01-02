@@ -1,13 +1,15 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+usuario = models.OneToOneField(User, on_delete=models.CASCADE)
+
 
 class InfoPerfilUsuario(models.Model):
-    usuario = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     foto_perfil = models.ImageField(upload_to='fotos_perfil', blank=True)
 
-    # def __str__(self):
-    # return self.usuario
+    def __str__(self):
+        return self.user
 
 
 class Cliente(models.Model):

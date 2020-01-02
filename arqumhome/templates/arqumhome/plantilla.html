@@ -5,19 +5,21 @@
     <header class="fluid-container fixed-top">
         <nav class="navbar navbar-expands-md navbar-arqum" style="padding: 0 !important;">
             <div class="header">
-                <a href="{% url 'index' %}">
-                    <img class="header-logo" src="{% static 'arqumhome/img/icon.svg' %}">    
-                </a>
+                <button id="btnInicio" type="button">
+                    <img class="header-logo" src="{% static 'arqumhome/img/icon.svg' %}" onclick="location.href='{% url 'user_login' %}';">    
+                </button>
                 <div class="header-actions">
                     <h3 class="header-title">ARQuM</h3>
-                    <h5 class="header-title user2" style="cursor: pointer" data-toggle="popover" data-placement="bottom" data-original-title title>
+                    <h5 class="header-title user2" style="cursor:pointer" data-toggle="popover" data-placement="bottom" data-original-title title>
                         <i class="fa fa-user">
                             {{ user.username }}
                         </i>
                     </h5>
-                    <span style="color: white;">
-                        <i class="fa fa-sign-out fa-lg"  role="button" onclick="location.href='{% url 'logout' %}';"></i>
-                    </span>
+                    <button id="btnLogout" class="header-actions-button">
+                        <span style="color: white;">
+                            <i class="fa fa-sign-out fa-lg"  role="button" onclick="location.href='{% url 'logout' %}';"></i>
+                        </span>
+                    </button>
                 </div>
             </div>
         </nav>
