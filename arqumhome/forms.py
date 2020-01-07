@@ -80,3 +80,14 @@ class CargarForm(forms.Form):
 
     def __init__(self, *args, **kwargs):
         super(CargarForm, self).__init__(*args, *kwargs)
+
+
+class BajarForm(forms.Form):
+
+    nombre_cliente = forms.CharField(
+        label='Nombre',
+        max_length=200,
+    )
+
+    def __init__(self, *args, **kwargs):
+        super(BajarForm, self).__init__(*args, **kwargs)

@@ -1,0 +1,43 @@
+{% extends 'arqumhome/plantilla.html' %}
+{% load widget_tweaks %}
+{% block main %}
+<main role="main" class="container-fluid">
+    <h2 id="titBajaCliente" class="page-title">Baja de Cliente</h2>
+    <br>
+    <div id="contentClienteBaja">
+        <div id="contentBaja">
+            <div class="row">
+                <div class="expContent col-sm-6">
+                    <div class="control-container form-vertical">
+                        <h4 class="page-title">Ingrese cliente y haga clic en Buscar</h4>
+                        <hr class="page-title-divider">
+                        <form action="{% url 'bajar' %}" method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {% for field in form %}
+                                <div class="form-group">
+                                    <strong><label for="{{field.name}}">{{field.label}}</label></strong>
+                                    {% render_field field class='form-control' %}
+                                </div>
+                            {% endfor %}
+                            <div class="col-sm-2">
+                                <input type="submit" class="btn-lg btn-block btn-primary" value="Buscar"></input>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div id="divConsultaDetallesCliente" style="display: block;">
+        <div class="row">
+            <div class="col-sm-6">
+                <div id="contentConsCliente" class="control-container form-horizontal">
+                    <h4 class="page-title">Detalles</h4>
+                    <hr class="page-title-divider">
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

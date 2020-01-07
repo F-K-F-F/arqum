@@ -1,12 +1,13 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext, loader
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from arqumhome.models import Cliente
-from arqumhome.forms import CargarForm, UsuarioForm, InfoPerfilUsuarioForm
+from arqumhome.forms import CargarForm, UsuarioForm, InfoPerfilUsuarioForm, BajarForm
 from django.views.generic import View
+from django.views import View
 
 
 def index(request):
@@ -72,6 +73,17 @@ def user_login(request):
         return render(request, 'arqumhome/login.html')
 
 
+class ObjetoCliente(object):
+    model = Cliente
+
+    def get_object(self):
+        id = self.kwargs.get('id')
+        obj = None
+        if id is not None:
+            obj = get_object_or_404(self.model, id=id)
+        return obj
+
+
 def altacliente(request):
     return render(request, 'arqumhome/altacliente.html')
 
@@ -99,7 +111,7 @@ class FormularioDeAlta(View):
     def post(self, request):
 
         # if request.method == 'POST':
-        #form = CargarForm(request.POST)
+        # form = CargarForm(request.POST)
 
         if request.method == 'POST':
             form = CargarForm(request.POST)
@@ -128,3 +140,24 @@ class FormularioDeAlta(View):
 
 class FormularioDeBaja(View):
     template = 'arqumhome/bajacliente.html'
+
+    def get(self, request):
+        form = BajarForm()
+        params = {}
+        prueba = "dato de prueba"
+        params['prueba'] = prueba
+        params['form'] = form
+        return render(request, self.template, params)
+
+    def post(self, request):
+        if request.method == 'POST':
+            form = BajarForm(request.POST)
+            if form.is_valid:
+                try:
+                    obj = get_object_or_404(Cliente)
+                    obj.delete()
+                except:
+                    pass
+        else:
+            form = BajarForm()
+        return render(request, 'arqumhome/bajacliente.html', {'form': form})

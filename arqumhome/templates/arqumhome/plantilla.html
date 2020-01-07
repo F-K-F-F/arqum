@@ -5,9 +5,9 @@
     <header class="fluid-container fixed-top">
         <nav class="navbar navbar-expands-md navbar-arqum" style="padding: 0 !important;">
             <div class="header">
-                <button id="btnInicio" type="button">
-                    <img class="header-logo" src="{% static 'arqumhome/img/icon.svg' %}" onclick="location.href='{% url 'user_login' %}';">    
-                </button>
+                <!--<button id="btnInicio" type="button">-->
+                    <img class="header-logo" src="{% static 'arqumhome/img/icon.svg' %}"> <!--onclick="location.href='{% url 'user_login' %}';">-->    
+                <!--</button>-->
                 <div class="header-actions">
                     <h3 class="header-title">ARQuM</h3>
                     <h5 class="header-title user2" style="cursor:pointer" data-toggle="popover" data-placement="bottom" data-original-title title>
@@ -34,7 +34,7 @@
                         <div class="dropdown-menu" aria-labelledby="menuABMC">
                             <a class="dropdown-item" href="{% url 'cargar' %}">Alta de Cliente</a>
                             <a class="dropdown-item" href="{% url 'consultacliente' %}">Consulta de Cliente</a>
-                            <a class="dropdown-item" href="{% url 'bajacliente' %}">Baja de Cliente</a>
+                            <a class="dropdown-item" href="{% url 'bajar' %}">Baja de Cliente</a>
                         </div>
                     </li>
                 </ul>
