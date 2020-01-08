@@ -91,3 +91,7 @@ class BajarForm(forms.Form):
 
     def __init__(self, *args, **kwargs):
         super(BajarForm, self).__init__(*args, **kwargs)
+
+
+class SearchForm(forms.Form):
+    q = forms.CharField(label='Buscar', max_length=50)

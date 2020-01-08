@@ -54,7 +54,46 @@
         </style>
     </head>
     <body>
-        {% block plantilla %}{% endblock %}
+        <header class="fluid-container fixed-top">
+            <nav class="navbar navbar-expands-md navbar-arqum" style="padding: 0 !important;">
+                <div class="header">
+                    <!--<button id="btnInicio" type="button">-->
+                        <img class="header-logo" src="{% static 'arqumhome/img/icon.svg' %}"> <!--onclick="location.href='{% url 'user_login' %}';">-->    
+                    <!--</button>-->
+                    <div class="header-actions">
+                        <h3 class="header-title">ARQuM</h3>
+                        <h5 class="header-title user2" style="cursor:pointer" data-toggle="popover" data-placement="bottom" data-original-title title>
+                            <i class="fa fa-user">
+                                {{ user.username }}
+                            </i>
+                        </h5>
+                        <button id="btnLogout" class="header-actions-button">
+                            <span style="color: white;">
+                                <i class="fa fa-sign-out fa-lg"  role="button" onclick="location.href='{% url 'logout' %}';"></i>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </nav>
+            <nav class="navbar navbar-expand-md navbar-arqum" style="padding: 0 !important;">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="nav nav-fill navbar-nav mr-auto px-3">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" style="color: white !important;" href="#" id="menuABMC" role="button" data-toggle="dropdown" aria-expanded="false">Menú</a>
+                            <div class="dropdown-menu" aria-labelledby="menuABMC">
+                                <a class="dropdown-item" href="{% url 'cargar' %}">Alta de Cliente</a>
+                                <a class="dropdown-item" href="{% url 'consultacliente' %}">Consulta de Cliente</a>
+                                <a class="dropdown-item" href="{% url 'bajar' %}">Baja de Cliente</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        {% block main %}{% endblock %}
         <script src="{% static '/arqumhome/js/jquery-3.4.1.min.js' %}"></script>
         <script src="{% static '/arqumhome/js/jquery.inputmask.bundle.min.js' %}"></script>
         <script src="{% static '/arqumhome/js/jquery.orgchart.js' %}"></script>

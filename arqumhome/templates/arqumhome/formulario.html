@@ -1,9 +1,0 @@
-<!--{% extends "arqumhome/altacliente.html" %}
-
-{% block formulario %}
-    <form action="{% url 'cargar' %}" method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-    </form>
-{% endblock %}
-

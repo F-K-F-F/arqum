@@ -4,16 +4,20 @@ from django.template import RequestContext, loader
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
-from arqumhome.models import Cliente
-from arqumhome.forms import CargarForm, UsuarioForm, InfoPerfilUsuarioForm, BajarForm
-from django.views.generic import View
+from django.views.generic import View, TemplateView, ListView, FormView
 from django.views import View
+from django.views.generic.detail import DetailView
+from django.db.models import Q
+from .models import Cliente
+from arqumhome.forms import CargarForm, UsuarioForm, InfoPerfilUsuarioForm, BajarForm, SearchForm
 
 
 def index(request):
     contenido = {'nombre_sitio': 'Arqum'}
     return render(request, 'arqumhome/index.html', contenido)
 
+
+# USUARIOS #
 
 @login_required
 def special(request):
@@ -72,16 +76,9 @@ def user_login(request):
     else:
         return render(request, 'arqumhome/login.html')
 
+# -------------------- #
 
-class ObjetoCliente(object):
-    model = Cliente
-
-    def get_object(self):
-        id = self.kwargs.get('id')
-        obj = None
-        if id is not None:
-            obj = get_object_or_404(self.model, id=id)
-        return obj
+# RENDER DE PLANTILLAS #
 
 
 def altacliente(request):
@@ -94,6 +91,10 @@ def bajacliente(request):
 
 def consultacliente(request):
     return render(request, 'arqumhome/consultacliente.html')
+
+# --------------------- #
+
+# CLASES PARA EL MODELO #
 
 
 class FormularioDeAlta(View):
@@ -161,3 +162,20 @@ class FormularioDeBaja(View):
         else:
             form = BajarForm()
         return render(request, 'arqumhome/bajacliente.html', {'form': form})
+
+
+class FormularioDeConsulta(FormView):
+    model = Cliente
+
+    template_name = 'arqum/consultacliente.html'
+    form_class = SearchForm
+
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+        object_list = Cliente.objects.filter(
+            Q(nombre_cliente__icontains=query) | Q(
+                domicilio_obra__icontains=query)
+        )
+        return object_list
+
+# --------------------- #

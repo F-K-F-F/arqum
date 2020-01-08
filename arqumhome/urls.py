@@ -12,6 +12,7 @@ urlpatterns = [
     path('consultacliente', views.consultacliente, name='consultacliente'),
     path('cargar_cliente', views.FormularioDeAlta.as_view(), name='cargar'),
     path('bajar_cliente', views.FormularioDeBaja.as_view(), name='bajar'),
+    path('consultar_cliente', views.FormularioDeConsulta.as_view(), name='consultar'),
     path('special', views.special, name='special'),
     path('user_logout', views.user_logout, name='logout'),
     path('register', views.register, name='register'),
