@@ -1,0 +1,43 @@
+{% extends 'arqumhome/base.html' %}
+{% load widget_tweaks %}
+{% block main %}
+<main role="main" class="container-fluid">
+    <h2 id="titBajaCliente" class="page-title">Consulta de Cliente</h2>
+    <br>
+    <div id="contentClienteBaja">
+        <div id="contentBaja">
+            <div class="row">
+                <div class="expContent col-sm-6">
+                    <div class="control-container form-vertical">
+                        <h4 class="page-title">Ingrese cliente y haga clic en Buscar</h4>
+                        <hr class="page-title-divider">
+                        <form action="{% url 'consultar' %}" method="GET">
+                            <input name="q" class="form-control" type="text">
+                            <br>
+                            <div class="col-sm-2">
+                                <input type="submit" class="btn-lg btn-block btn-primary" value="Buscar"></input>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="expContent col-sm-6">
+            <div class="control-container form-vertical">
+                <h4 class="page-title">Datos del cliente</h4>
+                <hr class="page-title-divider">
+                <ul>
+                    {% for cliente in object_list %}
+                        <div class="form-group">
+                            {{ cliente.nombre_cliente }}, {{ cliente.domicilio_obra }}, {{ cliente.domicilio_real }}
+                        </div>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

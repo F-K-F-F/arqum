@@ -4,7 +4,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width", initial-scale=1, shrink-to-fit=no>
+        <meta name="viewport" content="width=device-width", initial-scale=1, shrink-to-fit=yes>
         <title>ARQuM</title>
         <link rel="stylesheet" href="{% static '/arqumhome/css/bootstrap.min.css' %}">
         <link rel="stylesheet" href="{% static '/arqumhome/css/bootstrap.css' %}">
@@ -85,7 +85,7 @@
                             <a class="nav-link dropdown-toggle" style="color: white !important;" href="#" id="menuABMC" role="button" data-toggle="dropdown" aria-expanded="false">Menú</a>
                             <div class="dropdown-menu" aria-labelledby="menuABMC">
                                 <a class="dropdown-item" href="{% url 'cargar' %}">Alta de Cliente</a>
-                                <a class="dropdown-item" href="{% url 'consultacliente' %}">Consulta de Cliente</a>
+                                <a class="dropdown-item" href="{% url 'buscacliente' %}">Consulta de Cliente</a>
                                 <a class="dropdown-item" href="{% url 'bajar' %}">Baja de Cliente</a>
                             </div>
                         </li>

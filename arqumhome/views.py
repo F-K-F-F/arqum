@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse
 from django.template import RequestContext, loader
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -65,7 +65,7 @@ def user_login(request):
         if user:
             if user.is_active:
                 login(request, user)
-                return HttpResponseRedirect(reverse('index'))
+                return redirect(reverse('index'))
             # else:
                 # return HttpResponse("Your account was inactive.")
         else:
@@ -81,17 +81,24 @@ def user_login(request):
 # RENDER DE PLANTILLAS #
 
 
+@login_required(login_url='user_login')
 def altacliente(request):
     return render(request, 'arqumhome/altacliente.html')
 
 
+@login_required
 def bajacliente(request):
     return render(request, 'arqumhome/bajacliente.html')
 
 
+@login_required
 def consultacliente(request):
     return render(request, 'arqumhome/consultacliente.html')
 
+
+@login_required(login_url='user_login')
+def buscacliente(request):
+    return render(request, 'arqumhome/buscacliente.html')
 # --------------------- #
 
 # CLASES PARA EL MODELO #
@@ -100,6 +107,7 @@ def consultacliente(request):
 class FormularioDeAlta(View):
     template = 'arqumhome/altacliente.html'
 
+    @login_required
     def get(self, request):
 
         form = CargarForm()
@@ -109,6 +117,7 @@ class FormularioDeAlta(View):
         params['form'] = form
         return render(request, self.template, params)
 
+    @login_required
     def post(self, request):
 
         # if request.method == 'POST':
@@ -164,18 +173,22 @@ class FormularioDeBaja(View):
         return render(request, 'arqumhome/bajacliente.html', {'form': form})
 
 
-class FormularioDeConsulta(FormView):
+class FormularioDeConsulta(ListView):
     model = Cliente
 
-    template_name = 'arqum/consultacliente.html'
+    template_name = 'arqumhome/buscacliente.html'
     form_class = SearchForm
 
     def get_queryset(self):
-        query = self.request.GET.get('q')
-        object_list = Cliente.objects.filter(
-            Q(nombre_cliente__icontains=query) | Q(
-                domicilio_obra__icontains=query)
-        )
-        return object_list
+        try:
+            query = self.request.GET.get('q')
+            object_list = Cliente.objects.filter(
+                Q(nombre_cliente__icontains=query) | Q(
+                    domicilio_obra__icontains=query)
+            )
+            return object_list
+        except:
+            HttpResponse('No existe el cliente')
+
 
 # --------------------- #
